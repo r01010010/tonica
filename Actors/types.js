@@ -1,0 +1,4 @@
+export TYPE_USER = 'TYPE_USER';
+export TYPE_SYSTEM = 'TYPE_SYSTEM';
+export TYPE_UI = 'TYPE_UI';
+export TYPE_UNKNOWN = 'TYPE_UNKNOWN';
