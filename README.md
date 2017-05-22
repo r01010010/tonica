@@ -2,9 +2,14 @@
 
 Just playing around with this concept. The idea came somehow playing with redux and their actions, and the need to introduce permissions in frontend part. I realized we made the same actions in many different places/ways, for example, adding a workspace could be done in many different places and ways, and there were some restrictions related to this action/use case.
 
-Basically there will be a base class which is an action runner, with a method which is `do` which receives `actor/subject`, `action`, `object` and `context`. 
+### Actions
+They will be defined in a source of true config file, which will be programatically used, (JSON for example), but at the same time can be exposed to PO's so they can serve as a contract between them and developers.
 
-The actors could be:
+### The Runner
+Basically there will be a base class which is an action runner, with a method which is `do` which receives `actor/subject`, `action`, `object` and `context`, and run the middlewares associated to the actor.
+
+### Actors
+The actors will be concrete runners, there could be:
 
 - User
 - System
@@ -12,6 +17,9 @@ The actors could be:
 - etc
 
 Every actor is a task runner and is configured with its concrete (or not) middleware.
+
+### Middleware
+- Layers, layers, layers of everything you can imagine, actionable by env variables or whatever you want. Logging, permissions, anything!.
 
 ## Benefits
 
