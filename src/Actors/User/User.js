@@ -1,13 +1,12 @@
-import types from '../../__sourceOfTrue/actors';
-import types from '../../__sourceOfTrue/actions';
+import actorTypes from '../../__sourceOfTrue/actors';
 import createWorkspace from '../../Actions/USER_CREATES_WORKSPACE';
 import Actor from '../Actor';
 import logger from '../../Middleware/logger';
 
 class User extends Actor {
   constructor() {
-    this.super({
-      type: types.USER,
+    super({
+      type: actorTypes.USER,
       middlewares: {
         pre: [
           logger,
@@ -24,4 +23,6 @@ class User extends Actor {
   }
 }
 
-export default User;
+const user = new User();
+
+export default user;

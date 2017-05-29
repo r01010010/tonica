@@ -1,11 +1,13 @@
+import async from 'async';
+
 class Runner {
-  constructor(){
-    this.middlewares = { pre: [], post: [] };
+  constructor(options){
+    this.middlewares = options.middlewares;
   }
 
-  use(when, fn){
-    this.middlewares[when].push(fn);
-  }
+  // use(when, fn){
+  //   this.middlewares[when].push(fn);
+  // }
 
   hasPreMiddleware(){
     return (this.middleware && this.middleware.pre && this.middleware.pre.length > 0);
@@ -26,9 +28,9 @@ class Runner {
       async.applyEachSeries(this.middleware.pre, actor, object, context, performLogic);
     }
 
-    if (hasPreMiddleware) execMiddlewaresAndLogic();
+    if (this.hasPreMiddleware) execMiddlewaresAndLogic();
     else performLogic({});
   }
 }
 
-export default MiddlewareRunner;
+export default Runner;

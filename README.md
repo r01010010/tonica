@@ -27,3 +27,5 @@ Every actor is a task runner and is configured with its concrete (or not) middle
 - Is easy to think about it, is easy to map PO's requirements as user stories to our architecture, they're exactly a map.
 - Is easy to add/eliminate any layer to all actions, just by using middleware (logging, analytics, permissions, etc).
 - Is easy then to get a whole idea of what aplication can do in a configurable file/table like a SourceOfTrue.js, in which you define all possible actions, all possible middlewares, all possible actors and its combinations. You can even do a html version to discuss with PO's and use it as a source of true in any discussion.
+
+# FLOW

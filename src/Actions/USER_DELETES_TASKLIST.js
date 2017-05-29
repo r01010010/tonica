@@ -11,3 +11,6 @@ class USER_DELETES_TASKLIST extends Action {
     });
   }
 }
+
+
+export default new USER_DELETES_TASKLIST();

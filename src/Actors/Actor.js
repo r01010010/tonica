@@ -1,8 +1,8 @@
-const Runner from '../Middleware/Runner';
+import Runner from '../Middleware/Runner';
 
 class Actor extends Runner {
-  constructor(options) {
-    this.middleware = options.middleware;
+  constructor(options){
+    super(options);
   }
 
   does(action, object, context = {}, cb){
@@ -11,3 +11,5 @@ class Actor extends Runner {
     });
   }
 };
+
+export default Actor;
