@@ -6,8 +6,8 @@ class Actor extends Runner {
   }
 
   does(action, object, context = {}, cb){
-    this.exec(this, action, object, context, () => {
-      action.exec(this, object, context, cb);
+    this.exec(this, action, object, context, cb, () => {
+      action.exec(this, action, object, context, cb);
     });
   }
 };

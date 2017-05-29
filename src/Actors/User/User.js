@@ -7,7 +7,7 @@ class User extends Actor {
   constructor() {
     super({
       type: actorTypes.USER,
-      middlewares: {
+      middleware: {
         pre: [
           logger,
           // () => { // analytics }

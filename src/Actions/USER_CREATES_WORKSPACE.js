@@ -22,10 +22,10 @@ class USER_CREATES_WORKSPACE extends Action {
     super.exec(...arguments, (err, mwResponses) => {
 
       console.log(`Executing LOGIC for ${actions.USER_CREATES_WORKSPACE} in async if you want to`);
-      const logicResopnse = { foo: 'bar' };
+      const logicResponse = { foo: 'bar' };
 
-      cb(null, Object.assign(mwResponses, logicResopnse));
-      this.updateStore(logicResopnse);
+      cb(null, Object.assign(mwResponses, logicResponse));
+      this.updateStore(logicResponse);
     });
   }
 }
