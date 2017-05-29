@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import user from './Actors/User/User';
 
+const buttonClass = {
+  backgroundColor: '#2CB1C3',
+  border: 'none',
+  padding: 14,
+  textAlign: 'center',
+  textDecoration: 'none',
+  display: 'inline-block',
+  fontSize: 16,
+  borderRadius: 7,
+  color: 'white',
+  borderWeight: 1
+}
+
 class App extends Component {
 
   render() {
@@ -13,12 +26,12 @@ class App extends Component {
           <p style={{paddingTop: 0, marginTop: 5}}>An action & middleware oriented framework</p>
         </div>
         <p className="App-intro" style={{fontSize: 14}}>
-          Run an action and follow the flow to see how it works
+          Open the debugger and run an action to follow the flow and see how it works.
         </p>
         <p>
-          <button onClick={() => { user.createWorkspace({ name: 'Awesome workspace!' })} }>Create workspace</button>
+          <button style={buttonClass} onClick={() => { user.createWorkspace({ name: 'Awesome workspace!' })} }>Create workspace</button>
           &nbsp;&nbsp;
-          <button>Delete tasklist</button>
+          <button style={buttonClass} >Delete tasklist</button>
         </p>
       </div>
     );
