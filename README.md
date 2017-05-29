@@ -1,6 +1,6 @@
 # Tónica
 
-An architecture which aims to have a whole view of all use cases in a project thanks to a list of actions. 
+An architecture which aims to have a whole view of all use cases in a project thanks to a list of actions.
 
 Every action will have a keyword and will be performed by an Actor, to follow an intuitive flow. The actions and the actors can have middlewares associated.
 
@@ -43,4 +43,4 @@ They will be defined in a source of true config file, which will be programatica
 2. The actor, which inherits from a `runner` class, execs the correspondant action.
 3. The runner logic iterates through all actor's middlewares and finally calls the `action.exec` function.
 4. The action is also a runner, so the same, action.exec calls the parent's exec that will run all action's middleware plus the particular logic of the action.
-5. If action thinks is necesary, updates store.
+5. If action thinks is necessary, updates store.
