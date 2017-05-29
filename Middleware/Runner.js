@@ -3,20 +3,31 @@ class Runner {
     this.middlewares = { pre: [], post: [] };
   }
 
-  use(where, fn){
-    this.middlewares[where].push(fn);
+  use(when, fn){
+    this.middlewares[when].push(fn);
   }
 
-  next(action, object, context, i, results, cb){
-    const middleware = this.middlewares.pre[i];
-
-    if (!middleware) return cb(results);
-
-    middleware(subject, action, object, context, () => this.next(action, object, context, i++));
+  hasPreMiddleware(){
+    return (this.middleware && this.middleware.pre && this.middleware.pre.length > 0);
   }
 
-  do(subject, action, object, context, cb){
-    this.next(action, object, context, 0, {}, cb);
+  hasPostMiddleware(){
+    return (this.middleware && this.middleware.post && this.middleware.post.length > 0);
+  }
+
+  exec(actor, object, context, cb, logic) {
+    const responses = {};
+
+    const performLogic = (responses) => {
+      logic(actor, object, context, cb);
+    };
+
+    const execMiddlewaresAndLogic = () => {
+      async.applyEachSeries(this.middleware.pre, actor, object, context, performLogic);
+    }
+
+    if (hasPreMiddleware) execMiddlewaresAndLogic();
+    else performLogic({});
   }
 }
 
