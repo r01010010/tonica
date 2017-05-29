@@ -2,12 +2,9 @@ import async from 'async';
 
 class Runner {
   constructor(options){
+    this.type = options.type;
     this.middleware = options.middleware;
   }
-
-  // use(when, fn){
-  //   this.middlewares[when].push(fn);
-  // }
 
   hasPreMiddleware(){
     return (this.middleware && this.middleware.pre && this.middleware.pre.length > 0);
@@ -21,17 +18,13 @@ class Runner {
     const self = this;
     const responses = {};
 
-    const performLogic = (err, responses) => {
-      logic(actor, object, context, cb);
-    };
-
     const execMiddlewaresAndLogic = () => {
       const options = { actor, action, object, context };
-      async.waterfall([cb => cb(null, options), ...self.middleware.pre], performLogic);
+      async.waterfall([cb => cb(null, options), ...self.middleware.pre], logic);
     }
 
     if (this.hasPreMiddleware) execMiddlewaresAndLogic();
-    else performLogic({});
+    else logic(null, {});
   }
 }
 

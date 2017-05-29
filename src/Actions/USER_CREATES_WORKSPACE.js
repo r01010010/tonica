@@ -1,12 +1,12 @@
 import Action from './Action';
 import actions from '../__sourceOfTrue/actions';
-import reduxStore from '../store.js';
+import store from '../store.js';
 import logger from '../Middleware/logger';
 
 class USER_CREATES_WORKSPACE extends Action {
   constructor() {
     super({
-      name: actions.USER_CREATES_WORKSPACE,
+      type: actions.USER_CREATES_WORKSPACE,
       middleware: {
         pre:[logger],
         post: []
@@ -15,16 +15,16 @@ class USER_CREATES_WORKSPACE extends Action {
   }
 
   updateStore(data) {
-    // UPDATE reduxStore.dispatch(actions.USER_CREATES_WORKSPACE, { foo: 'bar' });
+    store.dispatch({ type: actions.USER_CREATES_WORKSPACE, data });
   }
 
-  exec(user, workspace, context, cb) {
+  exec(user, action, workspace, context, cb) {
     super.exec(...arguments, (err, mwResponses) => {
 
       console.log(`Executing LOGIC for ${actions.USER_CREATES_WORKSPACE} in async if you want to`);
       const logicResponse = { foo: 'bar' };
 
-      cb(null, Object.assign(mwResponses, logicResponse));
+      if (cb) cb(null, Object.assign(mwResponses, logicResponse));
       this.updateStore(logicResponse);
     });
   }
