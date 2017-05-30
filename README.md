@@ -4,6 +4,8 @@ An architecture which aims to have a whole view of all use cases in a project ma
 
 To follow a sintactically intuitive flow, every action will have a keyword and will be performed by an Actor (Subject, verb (action), predicate). The actions and the actors can have configurable (dependent of environment, for example) middlewares associated.
 
+The whole thing relies on a pattern called `Command pattern`. Check [command pattern](https://en.wikipedia.org/wiki/Command_pattern) in Wikipedia to have an intro to the architecture basic concept.
+
 ## Try it
 ```
 yarn install
@@ -48,4 +50,6 @@ In them lays the logic. They will be defined in a source of true config file, wh
 ### Middleware
 - Layers, layers, layers of everything you can imagine, actionable by env variables or whatever you want. Logging, permissions, anything!.
 
+### Licence
 
+MIT
