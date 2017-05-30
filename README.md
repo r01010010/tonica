@@ -1,4 +1,4 @@
-# Tónica
+# Tónica©
 
 An architecture which aims to have a whole view of all use cases in a project mapped into a list of actions.
 
