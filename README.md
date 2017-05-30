@@ -1,14 +1,25 @@
 # Tónica
 
-An architecture which aims to have a whole view of all use cases in a project thanks to a list of actions.
+An architecture which aims to have a whole view of all use cases in a project mapped into a list of actions.
 
-Every action will have a keyword and will be performed by an Actor, to follow an intuitive flow. The actions and the actors can have middlewares associated.
+To follow a sintactically intuitive flow, every action will have a keyword and will be performed by an Actor (Subject, verb (action), predicate). The actions and the actors can have configurable (dependent of environment, for example) middlewares associated.
 
 ## Try it
 ```
 yarn install
 yarn start
 ```
+
+The demostration starting point is a click event at `src/App.js:32`.
+
+## Flow
+
+1. The view, in the example a react component, calls to an action through its actor: `user.createWorkspace(ws)`.
+2. The actor, which inherits from a `runner` class, execs the correspondant action.
+3. The runner logic iterates through all actor's middlewares and finally calls the `action.exec` function.
+4. The action is also a runner, so the same, action.exec calls the parent's exec that will run all action's middleware plus the particular logic of the action.
+5. If action thinks is necessary, updates store and calls any callback given with all responses from logic and middlewares.
+
 ## Benefits
 
 - Architecture follows the gramatical logic. There's a subject, there's an action, there's an object and a context. It also follows the typical use case logic from UML, CUCUMBER or SCRUM cards like `as a USER I want to CREATE A WORKSPACE _ when blablabla`. To lookup in the code could be easier as the structure will follow this same grammar order. Just go to 'actions' and look for USER_CREATE_WORKSPACE, there you'll have all reusable logic.
@@ -32,15 +43,9 @@ The actors will be particular implementations of `Runner`, there could be:
 - etc
 
 ### Actions
-They will be defined in a source of true config file, which will be programatically used, (JSON for example), but at the same time can be exposed to PO's so they can serve as a contract between them and developers.
+In them lays the logic. They will be defined in a source of true config file, which will be programatically used, (JSON for example), but at the same time can be exposed to PO's so they can serve as a contract between them and developers.
 
 ### Middleware
 - Layers, layers, layers of everything you can imagine, actionable by env variables or whatever you want. Logging, permissions, anything!.
 
-## Flow
 
-1. The view, in the example a react component, calls to an action through its actor: `user.createWorkspace(ws)`.
-2. The actor, which inherits from a `runner` class, execs the correspondant action.
-3. The runner logic iterates through all actor's middlewares and finally calls the `action.exec` function.
-4. The action is also a runner, so the same, action.exec calls the parent's exec that will run all action's middleware plus the particular logic of the action.
-5. If action thinks is necessary, updates store.
